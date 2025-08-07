@@ -1,3 +1,119 @@
+## 2.3.5 (2025-06-25)
+
+### Bugfixes
+
+- Fix enum `__getitem__` not properly returning items with a falsy value ([#2434](https://github.com/hikari-py/hikari/issues/2434))
+- Fix deserializing message snapshots ([#2435](https://github.com/hikari-py/hikari/issues/2435))
+
+---
+## 2.3.4 (2025-06-24)
+
+### Features
+
+- Add `THREAD_CREATED`, `THREAD_STARTER_MESSAGE`, `INTERACTION_PREMIUM_UPSELL`, `STAGE_START`, `STAGE_END`, `STAGE_SPEAKER`, `STAGE_TOPIC`, `GUILD_APPLICATION_PREMIUM_SUBSCRIPTION`, and `PURCHASE_NOTIFICATION` to `MessageType` enum. ([#2382](https://github.com/hikari-py/hikari/issues/2382))
+- Add `SOUNDBOARD_SOUND_CREATE`, `SOUNDBOARD_SOUND_UPDATE`, and `SOUNDBOARD_SOUND_CREATE` to `AuditLogEventType` enum. ([#2384](https://github.com/hikari-py/hikari/issues/2384))
+- Re-export `hikari.impl.event_factory` as part of `hikari.impl` ([#2388](https://github.com/hikari-py/hikari/issues/2388))
+- Add naming to dispatch tasks to allow to identify them in the event loop ([#2394](https://github.com/hikari-py/hikari/issues/2394))
+- Allow setting HTTP concurrent connection limit through `HTTPSettings.connection_limit` ([#2395](https://github.com/hikari-py/hikari/issues/2395))
+- Add `HAS_THREAD` member to `MessageFlag`. ([#2398](https://github.com/hikari-py/hikari/issues/2398))
+- Add message forwarding support. ([#2399](https://github.com/hikari-py/hikari/issues/2399))
+- Add support for guild media channels. ([#2409](https://github.com/hikari-py/hikari/issues/2409))
+- Add reason to error log when hitting a subratelimit, if available ([#2416](https://github.com/hikari-py/hikari/issues/2416))
+
+### Optimizations
+
+- Optimize request flow ([#2393](https://github.com/hikari-py/hikari/issues/2393))
+- Sligly optimize memory usage when dispatching tasks ([#2394](https://github.com/hikari-py/hikari/issues/2394))
+- Switch ratelimiting logic to a sliding window implementation to better match Discord's side. This will allow maximum throughput that Discord would allow ([#2427](https://github.com/hikari-py/hikari/issues/2427))
+
+### Bugfixes
+
+- Fix typing inconsistency for `PartialInteraction.locale` ([#2401](https://github.com/hikari-py/hikari/issues/2401))
+
+### Documentation Improvements
+
+- Add items with missing docstrings (mainly enum values) ([#2381](https://github.com/hikari-py/hikari/issues/2381))
+- Document members of `ShardCloseCode` and `AuditLogEventType` enums. ([#2383](https://github.com/hikari-py/hikari/issues/2383))
+
+---
+## 2.3.4.dev1 (2025-06-24)
+
+### Features
+
+- Add `THREAD_CREATED`, `THREAD_STARTER_MESSAGE`, `INTERACTION_PREMIUM_UPSELL`, `STAGE_START`, `STAGE_END`, `STAGE_SPEAKER`, `STAGE_TOPIC`, `GUILD_APPLICATION_PREMIUM_SUBSCRIPTION`, and `PURCHASE_NOTIFICATION` to `MessageType` enum. ([#2382](https://github.com/hikari-py/hikari/issues/2382))
+- Add `SOUNDBOARD_SOUND_CREATE`, `SOUNDBOARD_SOUND_UPDATE`, and `SOUNDBOARD_SOUND_CREATE` to `AuditLogEventType` enum. ([#2384](https://github.com/hikari-py/hikari/issues/2384))
+- Re-export `hikari.impl.event_factory` as part of `hikari.impl` ([#2388](https://github.com/hikari-py/hikari/issues/2388))
+- Add naming to dispatch tasks to allow to identify them in the event loop ([#2394](https://github.com/hikari-py/hikari/issues/2394))
+- Allow setting HTTP concurrent connection limit through `HTTPSettings.connection_limit` ([#2395](https://github.com/hikari-py/hikari/issues/2395))
+- Add `HAS_THREAD` member to `MessageFlag`. ([#2398](https://github.com/hikari-py/hikari/issues/2398))
+- Add message forwarding support. ([#2399](https://github.com/hikari-py/hikari/issues/2399))
+- Add support for guild media channels. ([#2409](https://github.com/hikari-py/hikari/issues/2409))
+- Add reason to error log when hitting a subratelimit, if available ([#2416](https://github.com/hikari-py/hikari/issues/2416))
+
+### Optimizations
+
+- Optimize request flow ([#2393](https://github.com/hikari-py/hikari/issues/2393))
+- Sligly optimize memory usage when dispatching tasks ([#2394](https://github.com/hikari-py/hikari/issues/2394))
+- Switch ratelimiting logic to a sliding window implementation to better match Discord's side. This will allow maximum throughput that Discord would allow ([#2427](https://github.com/hikari-py/hikari/issues/2427))
+
+### Bugfixes
+
+- Fix typing inconsistency for `PartialInteraction.locale` ([#2401](https://github.com/hikari-py/hikari/issues/2401))
+
+### Documentation Improvements
+
+- Add items with missing docstrings (mainly enum values) ([#2381](https://github.com/hikari-py/hikari/issues/2381))
+- Document members of `ShardCloseCode` and `AuditLogEventType` enums. ([#2383](https://github.com/hikari-py/hikari/issues/2383))
+
+---
+## 2.3.3 (2025-05-18)
+
+### Features
+
+- Add `startup_window_delay` argument to `.run` and `.start` to customize the time in between startup windows for shards ([#2369](https://github.com/hikari-py/hikari/issues/2369))
+
+### Optimizations
+
+- Greatly optimize event managers memory management by avoiding unnecessary tasks creations and reducing lifetime of objects ([#2368](https://github.com/hikari-py/hikari/issues/2368))
+
+### Bugfixes
+
+- Fix error when attempting to stringify http request with a non-ascii character ([#2365](https://github.com/hikari-py/hikari/issues/2365))
+
+---
+## 2.3.2 (2025-05-09)
+
+### Deprecation
+
+- Deprecate all `x_url` properties in favour of `make_x_url()` methods ([#2338](https://github.com/hikari-py/hikari/issues/2338))
+
+### Features
+
+- Added `rest.create_voice_message` to support sending voice messages. ([#2251](https://github.com/hikari-py/hikari/issues/2251))
+- Add AWEBP support for asset URLs and increase sticker asset availability ([#2338](https://github.com/hikari-py/hikari/issues/2338))
+- Add `old_thread` field to `GuildThreadUpdateEvent`. ([#2353](https://github.com/hikari-py/hikari/issues/2353))
+- Add reason parameter to the following endpoints:
+    - `delete_permission_overwrite`
+    - `delete_webhook`
+    - `delete_invite`
+    - `reposition_channels`
+    - `reposition_roles`
+    - `delete_role`
+    - `create_stage_instance`
+    - `edit_stage_instance`
+    - `delete_stage_instance` ([#2354](https://github.com/hikari-py/hikari/issues/2354))
+
+### Optimizations
+
+- Optimize reusing file resources when uploading repeated ones ([#2336](https://github.com/hikari-py/hikari/issues/2336))
+
+### Bugfixes
+
+- Fix event filtering for interaction create specialized events ([#2335](https://github.com/hikari-py/hikari/issues/2335))
+- Fix duplicated uploaded attachments when reusing resources in embeds ([#2336](https://github.com/hikari-py/hikari/issues/2336))
+- Added partial missing documentation for rest voice-message interaction methods. ([#2355](https://github.com/hikari-py/hikari/issues/2355))
+
+---
 ## 2.3.1 (2025-04-27)
 
 ### Features

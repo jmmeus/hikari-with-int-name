@@ -180,10 +180,14 @@ class EventFactoryImpl(event_factory.EventFactory):
 
     @typing_extensions.override
     def deserialize_guild_thread_update_event(
-        self, shard: gateway_shard.GatewayShard, payload: data_binding.JSONObject
+        self,
+        shard: gateway_shard.GatewayShard,
+        payload: data_binding.JSONObject,
+        *,
+        old_thread: channel_models.GuildThreadChannel | None = None,
     ) -> channel_events.GuildThreadUpdateEvent:
         channel = self._app.entity_factory.deserialize_guild_thread(payload)
-        return channel_events.GuildThreadUpdateEvent(shard=shard, thread=channel)
+        return channel_events.GuildThreadUpdateEvent(shard=shard, thread=channel, old_thread=old_thread)
 
     @typing_extensions.override
     def deserialize_guild_thread_delete_event(
@@ -511,6 +515,7 @@ class EventFactoryImpl(event_factory.EventFactory):
                 username=user_payload.get("username", undefined.UNDEFINED),
                 global_name=user_payload.get("global_name", undefined.UNDEFINED),
                 avatar_decoration=None,
+                primary_guild=user_payload.get("primary_guild", undefined.UNDEFINED),
                 avatar_hash=user_payload.get("avatar", undefined.UNDEFINED),
                 banner_hash=user_payload.get("banner", undefined.UNDEFINED),
                 accent_color=accent_color,
