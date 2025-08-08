@@ -42,6 +42,7 @@ from hikari.api import config
 from hikari.api import event_manager as event_manager_
 from hikari.events import base_events
 from hikari.events import shard_events
+from hikari.internal import aio
 from hikari.internal import fast_protocol
 from hikari.internal import reflect
 from hikari.internal import typing_extensions
@@ -603,7 +604,7 @@ class EventManagerBase(event_manager_.EventManager):
         if return_tasks:
             return asyncio.gather(*tasks)
 
-        return None
+        return aio.completed_future()
 
     @typing_extensions.override
     def stream(
